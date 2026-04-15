@@ -1,0 +1,36 @@
+[package]
+name = "methane_detector"
+version = "0.1.0"
+edition = "2021"
+authors = ["Embedded Systems Lab"]
+description = "Methane Gas Detector with Alarm Response for ESP32"
+
+[dependencies]
+# Modern ESP-IDF: Version 0.52 handles everything internally!
+esp-idf-svc = "0.52"
+
+# Error handling
+anyhow = "1.0"
+
+# OLED Display & Graphics
+ssd1306 = "0.9.0"
+embedded-graphics = "0.8.1"
+heapless = "0.8.0"
+
+# Logging
+log = "0.4.22"
+
+[build-dependencies]
+embuild = { version = "0.32", features = ["espidf"] }
+
+[profile.release]
+opt-level = "s"
+debug = false
+lto = true
+codegen-units = 1
+
+[profile.dev]
+opt-level = "s"
+
+[package.metadata.esp-idf-sys]
+esp_idf_version = "v5.2"
